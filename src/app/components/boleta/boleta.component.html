@@ -1,0 +1,98 @@
+<app-menu></app-menu>
+<div class="container mat-elevation-z8" >
+   
+    <div class="row">
+        <mat-toolbar color="primary" >    
+        <span>Registro Boleta</span>    
+        </mat-toolbar>  
+    </div>
+
+    <div class="container" style="margin-top: 2%;">
+        <div class="row">
+            <mat-label>Cliente</mat-label> 
+        </div>
+        <div class="row" style="margin-top: 3%">
+            <mat-form-field class="col-md-5">
+                <mat-label>Nombre</mat-label>
+                <input  matInput [(ngModel)] ="objCliente.nombre" >
+            </mat-form-field>
+            <mat-form-field class="col-md-5">
+                <mat-label>Apellido</mat-label>
+                <input  matInput [(ngModel)] ="objCliente.apellido" >
+            </mat-form-field>
+           <button mat-raised-button color="primary" (click)="buscaCliente()" type="button" class='btn btn-primary btn-sm' style="width: 20px">...</button>
+           
+        </div>
+    </div> 
+
+    <div class="container" style="margin-top: 2%;">
+        <div class="row">
+            <mat-label>Producto</mat-label> 
+        </div>
+        <div class="row" style="margin-top: 3%">
+            <mat-form-field class="col-md-4">
+                <mat-label>Nombre</mat-label>
+                <input  matInput  [(ngModel)] ="objProducto.nombre">
+            </mat-form-field>
+            <mat-form-field class="col-md-2">
+                <mat-label>Precio</mat-label>
+                <input  matInput  [(ngModel)] ="objProducto.precio">
+            </mat-form-field>
+            <mat-form-field class="col-md-2">
+                <mat-label>Stock</mat-label>
+                <input  matInput  [(ngModel)] ="objProducto.stock">
+            </mat-form-field>
+            <mat-form-field class="col-md-2">
+                <mat-label>Cantidad</mat-label>
+                <input  matInput  [(ngModel)] ="objProducto.cantidad">
+            </mat-form-field>
+           <button mat-raised-button color="primary" (click)="buscaProducto()" type="button" class='btn btn-primary btn-sm' style="width: 20px">...</button>
+           <button mat-raised-button color="primary" (click)="agregarProducto()" type="button" class='btn btn-primary btn-sm' style="width: 100px">Agregar</button>
+          
+        </div>
+    </div> 
+    <div class="container" style="margin-top: 2%;">
+        <div class="row">
+            <button mat-raised-button color="primary" (click)="registrarBoleta()" type="button" class='btn btn-primary btn-sm' style="width: 1100px">Registrar Boleta</button>
+        </div>
+     </div>  
+     
+     <div class="row" style="margin-top: 3%">
+        <mat-table  #table  class="mat-cell" [dataSource]="dataSource" >
+              <ng-container matColumnDef="idProducto">
+                <mat-header-cell  mat-header-cell *matHeaderCellDef >Código</mat-header-cell>
+                <mat-cell *matCellDef="let aux" >{{ aux.idProducto  }}</mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="nombre">
+                <mat-header-cell  mat-header-cell *matHeaderCellDef >Nombre</mat-header-cell>
+                <mat-cell *matCellDef="let aux" >{{ aux.nombre}}</mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="precio">
+                <mat-header-cell  mat-header-cell *matHeaderCellDef >Precio</mat-header-cell>
+                <mat-cell *matCellDef="let aux" >{{ aux.precio }}</mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="cantidad">
+                <mat-header-cell  mat-header-cell *matHeaderCellDef >Cantidad</mat-header-cell>
+                <mat-cell *matCellDef="let aux" >{{ aux.cantidad }}</mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="actions">
+                <mat-header-cell  mat-header-cell *matHeaderCellDef >&nbsp;</mat-header-cell>
+                <mat-cell *matCellDef="let aux; let i=index;">
+                    <button mat-raised-button color="primary"  (click)="eliminaProducto(aux)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </mat-cell>
+              </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let aux; columns: displayedColumns"></mat-row>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[6,8,10]" showFirstLastButtons></mat-paginator>
+  </div>
+     
+  <div class="container" style="margin-top: 2%;">
+    <div class="row"></div>
+  </div> 
+
+ </div>   
+
+ 
