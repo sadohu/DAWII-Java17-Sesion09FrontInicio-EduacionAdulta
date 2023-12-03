@@ -26,47 +26,23 @@ export class ModelClienteComponent {
   dataSource:any;
 
   constructor(private dialog: MatDialog, private clienteService: ClienteService) {
-    this.refreshTable();
+
   }
 
   seleccioneCliente(objCliente: Cliente) {
-    window.sessionStorage.setItem("CLIENTE", JSON.stringify(objCliente));
-    console.log(">>>> " + objCliente.apellido);
-    this.dialog.closeAll();
+   
   }
 
   applyFilter() {
-      console.log(">>> applyFilter >> " + this.filtro); 
-      this.clienteService.consultaFiltro(this.filtro, this.pageIndex, this.pageSize).subscribe(
-        x => {
-          this.dataSource = new MatTableDataSource<Cliente>(x);
-          this.dataSource.paginator = this.paginator; 
-        }
-      );
+      
    }
 
    onPageChange(any : any){
-      console.log(">>> any.length >> " + any.length);
-      console.log(">>> any.pageIndex >> " + any.pageIndex);
-      console.log(">>> any.pageSize >> " + any.pageSize);
-      console.log(">>> any.previousPageIndex >> " + any.previousPageIndex);
-
-      this.clienteService.consultaFiltro(this.filtro, any.pageIndex, any.pageSize).subscribe(
-        x => {
-          this.dataSource = new MatTableDataSource<Cliente>(x);
-          this.dataSource.paginator = this.paginator; 
-        }
-      );
+     
    }
 
   private refreshTable() {
-      console.log(">>> refreshTable >>> ");
-      this.clienteService.consultaFiltro("",this.pageIndex, this.pageSize).subscribe(
-        x => {
-          this.dataSource = new MatTableDataSource<Cliente>(x);
-          this.dataSource.paginator = this.paginator; 
-        }
-      );
+      
   }
 
 }
