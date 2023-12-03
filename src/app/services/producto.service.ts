@@ -15,11 +15,7 @@ export class ProductoService {
   constructor(private http:HttpClient) { }
  
   consultaFiltro(filtro:string, page: number, size: number):Observable<Producto[]>{
-    if (filtro == ""){
-      return  this.http.get<Producto[]>(baseUrl +'/listaProducto?page='+ page+'&size=' + size); 
-    }else{
       return  this.http.get<Producto[]>(baseUrl +'/listaProducto/'+filtro+'?page='+ page+'&size=' + size); 
-    }
-  }  
+   }  
 
 }

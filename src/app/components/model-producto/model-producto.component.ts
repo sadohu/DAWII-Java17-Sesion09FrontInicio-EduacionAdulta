@@ -24,23 +24,35 @@ export class ModelProductoComponent {
   dataSource:any;
 
   constructor(private dialog: MatDialog, private productoService: ProductoService) {
-   
+    this.refreshTable("todos");
   }
 
   seleccioneProducto(objProducto: Producto) {
-    
-  }
-
-  applyFilter() {
-    
+    window.sessionStorage.setItem("PRODUCTO", JSON.stringify(objProducto));
+    this.dialog.closeAll();  
  }
 
- onPageChange(any : any){
- 
+  applyFilter() {
+    console.log(">>> applyFilter ");
+    this.refreshTable(this.filtro);
+  }
+
+onPageChange(any : any){
+    console.log(">> length >> " + any.length);
+    console.log(">> pageIndex >> " + any.pageIndex);
+    console.log(">> pageSize >> " + any.pageSize);
+    console.log(">> previousPageIndex >> " + any.previousPageIndex);
+    this.refreshTable(this.filtro);
 }
 
-  private refreshTable() {
-   
-  }
+private refreshTable(filtro : string) {
+    console.log(">>> refreshTable ");
+    this.productoService.consultaFiltro(filtro, this.pageIndex, this.pageSize).subscribe(
+        x => {
+              this.dataSource = new MatTableDataSource(x);
+              this.dataSource.paginator = this.paginator;
+        }
+    );
+}
 
 }

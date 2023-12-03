@@ -14,10 +14,7 @@ export class ClienteService {
   constructor(private http:HttpClient) { }
  
   consultaFiltro(filtro:string, page: number, size: number):Observable<Cliente[]>{
-      if (filtro == ""){
-        return  this.http.get<Cliente[]>(baseUrl +'/listaCliente?page='+ page+'&size=' + size); 
-      }else{
-        return  this.http.get<Cliente[]>(baseUrl +'/listaCliente/'+filtro+'?page='+ page+'&size=' + size); 
-      }
+       return  this.http.get<Cliente[]>(baseUrl +'/listaCliente/'+filtro+'?page='+ page+'&size=' + size); 
   }  
+  
 }
