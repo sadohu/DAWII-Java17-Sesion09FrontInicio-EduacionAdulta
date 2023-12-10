@@ -16,6 +16,7 @@ import { ProdInterceptorService } from './interceptors/prod-interceptor.service'
 import { LoginComponent } from './auth/login.component';
 import { MenuComponent } from './menu/menu.component';
 import { IndexComponent } from './index/index.component';
+import { TransaccionAsignacionPasatiempoComponent } from './components/transaccion-asignacion-pasatiempo/transaccion-asignacion-pasatiempo.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { IndexComponent } from './index/index.component';
 
     ModelProductoComponent,
     ModelClienteComponent,
-    BoletaComponent
+    BoletaComponent,
+    TransaccionAsignacionPasatiempoComponent
   ],
   imports: [
     BrowserModule,
