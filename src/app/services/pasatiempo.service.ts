@@ -18,4 +18,8 @@ export class PasatiempoService {
         return this.http.get<Pasatiempo[]>(baseUrlUtil + "/listaPasatiempoPorUsuario/" + idUsuario);
     }
 
+    registraPasatiempo(pasatiempoIds: any): Observable<any> {
+        return this.http.post<Pasatiempo[]>(baseUrlUtil + "/registraPasatiempo", pasatiempoIds);
+    }
+
 }

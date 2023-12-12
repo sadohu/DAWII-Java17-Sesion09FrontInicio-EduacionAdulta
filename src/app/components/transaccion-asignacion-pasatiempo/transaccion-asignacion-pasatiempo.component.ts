@@ -5,6 +5,7 @@ import { Pasatiempo } from 'src/app/models/pasatiempo.model';
 import { Usuario } from 'src/app/models/usuario.model';
 import { PasatiempoService } from 'src/app/services/pasatiempo.service';
 import { UtilService } from 'src/app/services/util.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-transaccion-asignacion-pasatiempo',
@@ -40,12 +41,31 @@ export class TransaccionAsignacionPasatiempoComponent {
 
   cargaPasatiempo() {
     this.pasatiempoService.listaPasatiempoPorUsuario(this.idUsuario).subscribe(
-      data => {
+      (data) => {
         this.listaPasatiempoPorUsuario = data;
         this.dataSource = new MatTableDataSource(this.listaPasatiempoPorUsuario);
         this.dataSource.paginator = this.paginator;
       }
     );
+  }
+
+  registraPasatiempo() {
+    const pasatiempoIds = {
+      idUsuario: this.idUsuario,
+      idPasatiempo: this.idPasatiempo
+    }
+    this.pasatiempoService.registraPasatiempo(pasatiempoIds).subscribe(
+      (data) => {
+        Swal.fire({ title: "Mensaje", text: data.mensaje, icon: "info" });
+        this.listaPasatiempoPorUsuario = data.lista;
+        this.dataSource = new MatTableDataSource(this.listaPasatiempoPorUsuario);
+        this.dataSource.paginator = this.paginator;
+      }
+    );
+  }
+
+  eliminaPasatiempo(pasatiempo: Pasatiempo) {
+
   }
 
 }

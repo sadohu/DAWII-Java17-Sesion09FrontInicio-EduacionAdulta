@@ -28,8 +28,8 @@
             </mat-select>
         </mat-form-field>
 
-        <button mat-raised-button color="primary" type="button" class='btn btn-primary btn-sm'
-            style="width: 100px">Agregar</button>
+        <button mat-raised-button color="primary" type="button" class='btn btn-primary btn-sm' style="width: 100px"
+            (click)="registraPasatiempo()">Agregar</button>
     </div>
 
     <div class="row" style="margin-top: 3%">
@@ -45,7 +45,7 @@
             <ng-container matColumnDef="actions">
                 <mat-header-cell mat-header-cell *matHeaderCellDef>&nbsp;</mat-header-cell>
                 <mat-cell *matCellDef="let aux; let i=index;">
-                    <button mat-raised-button color="primary">
+                    <button mat-raised-button color="primary" (click)="eliminaPasatiempo(aux)">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </mat-cell>
