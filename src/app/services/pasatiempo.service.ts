@@ -22,4 +22,7 @@ export class PasatiempoService {
         return this.http.post<Pasatiempo[]>(baseUrlUtil + "/registraPasatiempo", pasatiempoIds);
     }
 
+    eliminaPasatiempo(pasatiempoIds: any): Observable<any> {
+        return this.http.post<Pasatiempo[]>(baseUrlUtil + "/eliminaPasatiempo", pasatiempoIds);
+    }
 }

@@ -53,7 +53,7 @@ export class TransaccionAsignacionPasatiempoComponent {
     const pasatiempoIds = {
       idUsuario: this.idUsuario,
       idPasatiempo: this.idPasatiempo
-    }
+    };
     this.pasatiempoService.registraPasatiempo(pasatiempoIds).subscribe(
       (data) => {
         Swal.fire({ title: "Mensaje", text: data.mensaje, icon: "info" });
@@ -66,6 +66,32 @@ export class TransaccionAsignacionPasatiempoComponent {
 
   eliminaPasatiempo(pasatiempo: Pasatiempo) {
 
+    const pasatiempoIds = {
+      idUsuario: this.idUsuario,
+      idPasatiempo: pasatiempo.idPasatiempo
+    };
+
+    Swal.fire({
+      title: `¿Desea el pasatiempo ${pasatiempo.nombre} del usuario?`,
+      text: "Los cambios no podrán ser revertidos",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "No, cancelar",
+    }).then(result => {
+      if (result.isConfirmed) {
+        this.pasatiempoService.eliminaPasatiempo(pasatiempoIds).subscribe(
+          (data) => {
+            Swal.fire({ title: "Mensaje", text: data.mensaje, icon: "info" });
+            this.listaPasatiempoPorUsuario = data.lista;
+            this.dataSource = new MatTableDataSource(this.listaPasatiempoPorUsuario);
+            this.dataSource.paginator = this.paginator;
+          }
+        );
+      }
+    });
   }
 
 }
