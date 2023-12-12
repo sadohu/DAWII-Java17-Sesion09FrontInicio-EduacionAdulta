@@ -1,3 +1,6 @@
 export class Usuario {
-    idUsuario ?: number;
+    idUsuario?: number;
+    nombres?: string;
+    apellidos?: string;
+
 }

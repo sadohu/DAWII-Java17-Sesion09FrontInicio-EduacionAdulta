@@ -1,13 +1,35 @@
 <app-menu></app-menu>
-<div class="container mat-elevation-z8" >
-   
+<div class="container mat-elevation-z8">
+
     <div class="row">
-        <mat-toolbar color="primary" >    
-        <span>Aasignación Pasatiempo</span>    
-        </mat-toolbar>  
+        <mat-toolbar color="primary">
+            <span>Aasignación Pasatiempo</span>
+        </mat-toolbar>
     </div>
 
+    <div class="row" style="margin-top: 3%">
+        <mat-form-field class="col-md-4">
+            <mat-label>Usuario</mat-label>
+            <mat-select [(ngModel)]="idUsuario">
+                <mat-option value="-1"> [Seleccione] </mat-option>
+                <mat-option *ngFor="let x of listaUsuario" [value]="x.idUsuario">
+                    {{x.nombres + ' ' + x.apellidos}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
 
- </div>
+        <mat-form-field class="col-md-4">
+            <mat-label>Pasatiempo</mat-label>
+            <mat-select [(ngModel)]="idPasatiempo">
+                <mat-option value="-1"> [Seleccione] </mat-option>
+                <mat-option *ngFor="let x of listaPasatiempo" [value]="x.idPasatiempo">
+                    {{x.nombre}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
 
+        <button mat-raised-button color="primary" type="button" class='btn btn-primary btn-sm'
+            style="width: 100px">Agregar</button>
+    </div>
 
+</div>
