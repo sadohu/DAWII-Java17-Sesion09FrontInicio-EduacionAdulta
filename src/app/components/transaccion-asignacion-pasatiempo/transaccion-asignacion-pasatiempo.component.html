@@ -10,7 +10,7 @@
     <div class="row" style="margin-top: 3%">
         <mat-form-field class="col-md-4">
             <mat-label>Usuario</mat-label>
-            <mat-select [(ngModel)]="idUsuario">
+            <mat-select [(ngModel)]="idUsuario" (selectionChange)="cargaPasatiempo()">
                 <mat-option value="-1"> [Seleccione] </mat-option>
                 <mat-option *ngFor="let x of listaUsuario" [value]="x.idUsuario">
                     {{x.nombres + ' ' + x.apellidos}}
@@ -30,6 +30,30 @@
 
         <button mat-raised-button color="primary" type="button" class='btn btn-primary btn-sm'
             style="width: 100px">Agregar</button>
+    </div>
+
+    <div class="row" style="margin-top: 3%">
+        <mat-table #table class="mat-cell" [dataSource]="dataSource">
+            <ng-container matColumnDef="idPasatiempo">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Código</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.idPasatiempo }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="nombre">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Nombre</mat-header-cell>
+                <mat-cell *matCellDef="let aux">{{ aux.nombre}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="actions">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>&nbsp;</mat-header-cell>
+                <mat-cell *matCellDef="let aux; let i=index;">
+                    <button mat-raised-button color="primary">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let aux; columns: displayedColumns"></mat-row>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[6,8,10]" showFirstLastButtons></mat-paginator>
     </div>
 
 </div>
